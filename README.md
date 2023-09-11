@@ -1,13 +1,18 @@
 
 ## go-promise
 
+[![Build Status](https://github.com/cooperhsiung/go-promise/workflows/Run%20Tests/badge.svg?branch=master)](https://github.com/cooperhsiung/go-promise/actions?query=branch%3Amaster)
+[![codecov](https://codecov.io/cooperhsiung/go-promise/branch/master/graph/badge.svg)](https://codecov.io/cooperhsiung/go-promise)
+[![Go Report Card](https://goreportcard.com/badge/github.com/cooperhsiung/go-promise)](https://goreportcard.com/report/github.com/cooperhsiung/go-promise)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cooperhsiung/go-promise/blob/master/LICENSE.md)
+
+Promise / Future library for Go.
+
+### import
+
 ```
 go get github.com/cooperhsiung/go-promise
 ```
-
-Future library for Go.
-
-### import
 
 ```go
 import (
