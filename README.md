@@ -96,16 +96,16 @@ val, err := Any(p1, p2)
 fmt.Println(val, err)
 ```
 
-- #### Promise.Map[T any](input []T, mapper func(interface{}) *Promise, concurrency int) ([]interface{}, error)
+- #### Promise.Map[T any](input []T, mapper func(T) *Promise, concurrency int) ([]interface{}, error)
 
 Promises returned by the mapper function are awaited for and the returned promise doesn't fulfill until all mapped promises have fulfilled as well. If any promise in the array is rejected, or any promise returned by the mapper function is rejected, the returned promise is rejected as well.
 
 The concurrency limit applies to Promises returned by the mapper function and it basically limits the number of Promises created
 
 ```go
-ret, err := Map([]int{100, 200, 400, 800}, func(i interface{}) *Promise {
+ret, err := Map([]int{100, 200, 400, 800}, func(i int) *Promise {
     return New(func(resolve chan interface{}, reject chan error) {
-        time.Sleep(time.Duration(i.(int)) * time.Millisecond)
+        time.Sleep(time.Duration(i) * time.Millisecond)
         resolve <- "hello world"
     })
 }, 2)
