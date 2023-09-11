@@ -141,9 +141,9 @@ func TestAnyErr(t *testing.T) {
 
 func TestMap(t *testing.T) {
 	start := time.Now()
-	ret, err := Map([]int{100, 200, 400, 800}, func(i interface{}) *Promise {
+	ret, err := Map([]int{100, 200, 400, 800}, func(i int) *Promise {
 		return New(func(resolve chan interface{}, reject chan error) {
-			time.Sleep(time.Duration(i.(int)) * time.Millisecond)
+			time.Sleep(time.Duration(i) * time.Millisecond)
 			resolve <- "hello world"
 		})
 	}, 2)
@@ -157,9 +157,9 @@ func TestMap(t *testing.T) {
 
 func TestMap_timer1(t *testing.T) {
 	start := time.Now()
-	ret, err := Map([]int{200, 300, 100, 400}, func(i interface{}) *Promise {
+	ret, err := Map([]int{200, 300, 100, 400}, func(i int) *Promise {
 		return New(func(resolve chan interface{}, reject chan error) {
-			time.Sleep(time.Duration(i.(int)) * time.Millisecond)
+			time.Sleep(time.Duration(i) * time.Millisecond)
 			resolve <- "hello world"
 		})
 	}, 2)
@@ -172,9 +172,9 @@ func TestMap_timer1(t *testing.T) {
 
 func TestMapErr(t *testing.T) {
 	start := time.Now()
-	ret, err := Map([]int{100, 200, 400, 600, 100}, func(i interface{}) *Promise {
+	ret, err := Map([]int{100, 200, 400, 600, 100}, func(i int) *Promise {
 		return New(func(resolve chan interface{}, reject chan error) {
-			var delay = i.(int)
+			var delay = i
 
 			time.Sleep(time.Duration(delay) * time.Millisecond)
 			if delay > 500 {

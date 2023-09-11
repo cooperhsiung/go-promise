@@ -173,7 +173,7 @@ func Any(futures ...*Promise) (interface{}, error) {
 	return val, err
 }
 
-func Map[T any](input []T, mapper func(interface{}) *Promise, concurrency int) ([]interface{}, error) {
+func Map[T any](input []T, mapper func(T) *Promise, concurrency int) ([]interface{}, error) {
 	var result = make([]interface{}, len(input))
 	var err error
 	var done = make(chan bool, 1)
