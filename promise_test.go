@@ -60,6 +60,21 @@ func TestAll(t *testing.T) {
 	AssertNear(t, cost-100)
 }
 
+func TestAll_2(t *testing.T) {
+	start := time.Now()
+	var p1 = New(func(resolve chan interface{}, reject chan error) {
+		resolve <- "done"
+	})
+	var p2 = New(func(resolve chan interface{}, reject chan error) {
+		reject <- nil
+	})
+	val, err := All(p1, p2)
+	fmt.Println(val, err)
+	var cost = int(time.Since(start) / 1e6)
+	fmt.Println("cost:", cost)
+	//AssertNear(t, cost-100)
+}
+
 func TestAllErr(t *testing.T) {
 	start := time.Now()
 	var p1 = NewSleep(200, false)
